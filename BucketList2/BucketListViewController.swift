@@ -43,14 +43,33 @@ class BucketListViewController: UITableViewController, AddItemTableViewControlle
         items.remove(at: indexPath.row)
         tableView.reloadData()
     }
+    
+    @IBAction func addItemSegue(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "EditItemSegue", sender: sender)
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddItemSegue" {
+ //       if segue.identifier == "AddItemSegue" {
+ //           let navigationController = segue.destination as! UINavigationController
+ //           let addItemTableViewController = navigationController.topViewController as! AddItemTableViewController
+ //           addItemTableViewController.delegate = self
+ //       }
+ //       else if segue.identifier == "EditItemSegue" {
+ //           let navigationController = segue.destination as! UINavigationController
+ //           let addItemTableViewController = navigationController.topViewController as! AddItemTableViewController
+ //           addItemTableViewController.delegate = self
+            
+ //           let indexPath = sender as! NSIndexPath
+ //           let item = items[indexPath.row]
+ //           addItemTableViewController.item = item
+ //           addItemTableViewController.indexPath = indexPath
+ //       }
+        if sender as? UIBarButtonItem != nil {
             let navigationController = segue.destination as! UINavigationController
             let addItemTableViewController = navigationController.topViewController as! AddItemTableViewController
             addItemTableViewController.delegate = self
         }
-        else if segue.identifier == "EditItemSegue" {
+        else {
             let navigationController = segue.destination as! UINavigationController
             let addItemTableViewController = navigationController.topViewController as! AddItemTableViewController
             addItemTableViewController.delegate = self
@@ -59,6 +78,7 @@ class BucketListViewController: UITableViewController, AddItemTableViewControlle
             let item = items[indexPath.row]
             addItemTableViewController.item = item
             addItemTableViewController.indexPath = indexPath
+
         }
     }
     
