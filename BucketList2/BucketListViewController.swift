@@ -11,9 +11,9 @@ import CoreData
 
 class BucketListViewController: UITableViewController, AddItemTableViewControllerDelegate {
 
-    var items = [BucketListItem]()
+    @objc var items = [BucketListItem]()
     
-    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    @objc let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +81,7 @@ class BucketListViewController: UITableViewController, AddItemTableViewControlle
         }
     }
         
-    func fetchAllItems() {
+    @objc func fetchAllItems() {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "BucketListItem")
         do {
             let result = try managedObjectContext.fetch(request)
@@ -91,11 +91,11 @@ class BucketListViewController: UITableViewController, AddItemTableViewControlle
         }
     }
     
-    func cancelButtonPressed(by controller: AddItemTableViewController){
+    @objc func cancelButtonPressed(by controller: AddItemTableViewController){
         dismiss(animated: true, completion: nil)
     }
     
-    func itemSaved(by controller: AddItemTableViewController, with text: String, at indexPath: NSIndexPath?) {
+    @objc func itemSaved(by controller: AddItemTableViewController, with text: String, at indexPath: NSIndexPath?) {
         
         if let ip = indexPath {
             let item = items[ip.row]
